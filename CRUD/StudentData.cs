@@ -41,5 +41,17 @@ namespace CRUD
             student.Id =students.Max(s => s.Id) + 1;
             students.Add(student);
         }
+
+        public static Students GetStudent(int id){
+            return students.Find(s => s.Id == id) ?? throw new Exception("Student not found");        
+        }
+
+        public static void UpdateStudent(Students student){
+            Students existingStudent = students.Find(s => s.Id == student.Id) ?? throw new Exception("Student not found");
+            existingStudent.Name = student.Name;
+            existingStudent.Email = student.Email;
+            existingStudent.Phone = student.Phone;
+            existingStudent.Address = student.Address;
+        }
     }
 }

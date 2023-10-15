@@ -1,10 +1,14 @@
 ﻿@page "/student"
+@page "/student/{id:int}"
 @using Models
 @inject NavigationManager NavigationManager
 
 <PageTitle>CRUD Update</PageTitle>
-<div class="container">
-<h3>Update Student</h3>
+@if(student is null){
+    <h1>Loading Data/..............</h1>
+}else{
+    <div class="container">
+<h3>Manage Student</h3>
 <div class="row">
     <div class="col-md-12">
         <EditForm Model="@student" OnValidSubmit="HandleSubmit">
@@ -28,7 +32,7 @@
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-success">Update Data</button>
+                <button class="btn btn-success">Save Data</button>
             </div>
 
 
@@ -36,19 +40,42 @@
     </div>
 </div>
 </div>
+}
 
 @code {
+    [Parameter]
+    public int? Id {get;set;}
 
-    private Students student = new(){
-        Name= string.Empty,
-        Email = string.Empty,
-        Phone = string.Empty,
-        Address =string.Empty
-    };
+    private Students? student;
+        protected override void OnParametersSet()
+        {
+            if(Id is not null){
+                Students foundStudent  = StudentData.GetStudent(Id.Value);
+                student = new()
+                {
+                    Id = foundStudent.Id,
+                    Name = foundStudent.Name,
+                    Email =foundStudent.Email,
+                    Phone =foundStudent.Phone,
+                    Address =foundStudent.Address
+                };
+            }else{
+              student=  new(){
+                    Name= string.Empty,
+                    Email = string.Empty,
+                    Phone = string.Empty,
+                    Address =string.Empty
+                };
+            }
+        }
 
-    private void HandleSubmit(){
-        StudentData.AddStudent(student);
-        NavigationManager.NavigateTo("/");
+        private void HandleSubmit(){
+            if(student!.Id==0){
+                StudentData.AddStudent(student);
+            }else{
+                StudentData.UpdateStudent(student);
+            }
+            NavigationManager.NavigateTo("/");
     }
 
 }
