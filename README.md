@@ -2,5 +2,5 @@
 
 -- dotnet new blazorwasm -n CRUD
 
-- goto CRUD folder and type following command
-## dotnet run
+- Go to the CRUD folder and type the following command
+  ** dotnet run
