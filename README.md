@@ -5,4 +5,4 @@
 - Go to the CRUD folder and type the following command
   ** dotnet run
 
-![MyImage](../screensort/dotnet-run.png)
+-- dotnet new razorcomponent -n UpdateStudent -o Pages

@@ -1,11 +1,22 @@
 ﻿@page "/"
 @using Models
+@inject NavigationManager NavigationManager
 
-<PageTitle>Index</PageTitle>
 
+<PageTitle>CRUD Application</PageTitle>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+      
 <h1>CRUD Application</h1>
+
+
+<button class="btn btn-success" @onclick="AddNewStudent">Add Student</button>
 <hr>
-<table  class="table table-striped">
+@if(students is null){
+    <h1>Loading Data.........</h1>
+}else{
+    <table  class="table table-striped">
     <thead class="table-dark">
         <tr>
             <th>S.n</th>
@@ -33,32 +44,24 @@
         }
     </tbody>
 </table>
+}
 
+      
+        </div>
+    </div>
+</div>
 
 @code {
 
-    private Students[] students = new[]{
-    new Students(){
-    Id=1,
-    Name="Sophia",
-    Email="sophia@gmail.com",
-    Phone=98798,
-    Address="Kathmandu"
-    },
-    new Students(){
-    Id=2,
-    Name="Nandira",
-    Email="nandira@gmail.com",
-    Phone=98798,
-    Address="Kathmandu"
-    },
-    new Students(){
-    Id=3,
-    Name="hari",
-    Email="hari@gmail.com",
-    Phone=98798,
-    Address="Pokhara"
-    }
-};
+    private Students[]? students;
+
+        protected override void OnInitialized()
+        {
+            students = StudentData.GetStudents();
+        }
+
+        public void AddNewStudent(){
+            NavigationManager.NavigateTo("/student");
+        }
 
 }
