@@ -1,9 +1,64 @@
 ﻿@page "/"
+@using Models
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>CRUD Application</h1>
+<hr>
+<table  class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>S.n</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in students)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.Phone</td>
+                <td>@student.Address</td>
+                <td>
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+
+    private Students[] students = new[]{
+    new Students(){
+    Id=1,
+    Name="Sophia",
+    Email="sophia@gmail.com",
+    Phone=98798,
+    Address="Kathmandu"
+    },
+    new Students(){
+    Id=2,
+    Name="Nandira",
+    Email="nandira@gmail.com",
+    Phone=98798,
+    Address="Kathmandu"
+    },
+    new Students(){
+    Id=3,
+    Name="hari",
+    Email="hari@gmail.com",
+    Phone=98798,
+    Address="Pokhara"
+    }
+};
+
+}

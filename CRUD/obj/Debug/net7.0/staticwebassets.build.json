@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cPprwd9En4cv+RFIwbkog5LqZXPoQ8bqykrx41NpcZ4=",
+  "Hash": "fihYLw6SerFauyAFhEAKkHNoVRjURQpDSzVjyH2k3r0=",
   "Source": "CRUD",
   "BasePath": "/",
   "Mode": "Root",
@@ -7155,23 +7155,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
-    },
-    {
-      "Identity": "C:\\Users\\dp\\Desktop\\aspdotnetblazorproject\\CRUD\\wwwroot\\sample-data\\weather.json",
-      "SourceId": "CRUD",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\dp\\Desktop\\aspdotnetblazorproject\\CRUD\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "sample-data/weather.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\sample-data\\weather.json"
     }
   ]
 }
