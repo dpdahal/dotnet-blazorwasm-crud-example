@@ -53,5 +53,11 @@ namespace CRUD
             existingStudent.Phone = student.Phone;
             existingStudent.Address = student.Address;
         }
+
+        public static void DeleteStudent(int id){
+            Students student = GetStudent(id);
+            students.Remove(student);
+        }
+
     }
 }

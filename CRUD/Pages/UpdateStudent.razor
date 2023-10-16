@@ -3,12 +3,12 @@
 @using Models
 @inject NavigationManager NavigationManager
 
-<PageTitle>CRUD Update</PageTitle>
+<PageTitle>@title</PageTitle>
 @if(student is null){
     <h1>Loading Data/..............</h1>
 }else{
     <div class="container">
-<h3>Manage Student</h3>
+<h3>@title</h3>
 <div class="row">
     <div class="col-md-12">
         <EditForm Model="@student" OnValidSubmit="HandleSubmit">
@@ -46,6 +46,8 @@
     [Parameter]
     public int? Id {get;set;}
 
+    private String title = string.Empty;
+
     private Students? student;
         protected override void OnParametersSet()
         {
@@ -59,6 +61,7 @@
                     Phone =foundStudent.Phone,
                     Address =foundStudent.Address
                 };
+                title =$"Update {student.Name}";
             }else{
               student=  new(){
                     Name= string.Empty,
@@ -66,6 +69,7 @@
                     Phone = string.Empty,
                     Address =string.Empty
                 };
+                title = "Add New Record";
             }
         }
 

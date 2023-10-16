@@ -1,0 +1,53 @@
+﻿@page "/Delete"
+@using Models
+<PageTitle>@title</PageTitle>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">@title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h1>Are you sure delete this data</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+         @onclick="@Cancle"
+         data-bs-dismiss="modal">Close</button>
+        <button type="button" 
+                @onclick="@Confirm"
+                data-bs-dismiss="modal"
+        class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@code {
+    [Parameter]
+
+    public Students? Students {get;set;}
+
+    [Parameter]
+    public EventCallback<bool> onClose {get;set;}
+
+    private String title = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        title =$"Delete {Students?.Name}";
+    }
+
+    private void Confirm(){
+        onClose.InvokeAsync(true);
+    }
+
+    
+    private void Cancle(){
+        onClose.InvokeAsync(false);
+    }
+}

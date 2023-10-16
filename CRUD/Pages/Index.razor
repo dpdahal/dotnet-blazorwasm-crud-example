@@ -13,9 +13,13 @@
 
 <button class="btn btn-success" @onclick="AddNewStudent">Add Student</button>
 <hr>
-@if(students is null){
+@if(students is null){  
     <h1>Loading Data.........</h1>
 }else{
+  <DeleteStudent Students="@currentStudent" onClose="@OnDeleteModelClose">
+
+  </DeleteStudent>
+
     <table  class="table table-striped">
     <thead class="table-dark">
         <tr>
@@ -37,8 +41,11 @@
                 <td>@student.Phone</td>
                 <td>@student.Address</td>
                 <td>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    <button class="btn btn-success" @onclick="(()=>editStudent(student.Id))">Update</button>
+                    
+                    <button class="btn btn-danger"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    @onclick="(()=>currentStudent=student)">Delete</button>
                 </td>
             </tr>
         }
@@ -54,6 +61,7 @@
 @code {
 
     private Students[]? students;
+    private Students? currentStudent;
 
         protected override void OnInitialized()
         {
@@ -62,6 +70,17 @@
 
         public void AddNewStudent(){
             NavigationManager.NavigateTo("/student");
+        }
+
+        private void editStudent(int id){
+            NavigationManager.NavigateTo($"/student/{id}");
+        }
+
+        private void OnDeleteModelClose(bool accepted){
+            if(accepted){
+                StudentData.DeleteStudent(currentStudent!.Id);
+                students = StudentData.GetStudents();
+            }
         }
 
 }
